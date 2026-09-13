@@ -66,6 +66,41 @@ JavaScript off. **When the iPhone app is approved**, swap that constant for the 
 URL and change the five button labels to match — a button says what happens when it is used,
 so "Ask for a tag" should not open the App Store.
 
+## The patent-pending chip
+
+One component, `.pp`, used in four places: under the hero trustline, after the
+presence note, on the sticker mock, and in the footer. Drop it anywhere:
+
+```html
+<span class="pp" title="Two U.S. provisional patent applications filed">
+  <svg viewBox="0 0 20 24" fill="none" aria-hidden="true">
+    <path d="M10 1.7 2.9 4.7v7c0 4.9 3 8.3 7.1 9.6 4.1-1.3 7.1-4.7 7.1-9.6v-7Z"
+          stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+    <rect x="7.3" y="8.1" width="5.4" height="5.4" rx="1.4" stroke="currentColor" stroke-width="1.7"/>
+  </svg>Patent pending
+</span>
+```
+
+| Variant | Use on |
+|---|---|
+| `pp` | `--paper` and `.band-paper` |
+| `pp on-dark` | `.band-dark` and the footer |
+| `pp quiet` | white cards, or anywhere it would compete with a heading |
+
+The glyph is a shield around the PassQR finder square, so the chip reads as part
+of the mark rather than as a stock badge.
+
+Three rules for anyone editing it:
+
+1. **The words stay "Patent pending."** It is a legal-notice term of art. Do not
+   inflate it to "Patented", and do not shorten it to "Pat. pend."
+2. **The application numbers stay off the page.** They live in the tooltip only as
+   a count. Provisionals are unpublished; there is nothing to point a reader at.
+3. **It comes off the day the provisionals lapse** unless a non-provisional has
+   been filed. The deadline is **02 Sep 2027** from the earlier filing and does not
+   move. Marking a product patent pending when nothing is pending is a false
+   marking problem, not a copy problem.
+
 ## Claims on this page are checked, not aspirational
 
 The status table in `section#status` is load-bearing. As of 12 Sep 2026:
