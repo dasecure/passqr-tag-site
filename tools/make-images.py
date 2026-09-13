@@ -21,10 +21,18 @@ PAPER = (239, 247, 244)
 TEAL = (14, 124, 107)
 MUTED = (150, 180, 172)
 
+# In preference order. The first two are the real brand faces; install them into
+# ~/Library/Fonts from Google Fonts and the card is drawn in the same type as the site.
+# The rest are the same fallbacks the page's own font-family stack names, so the card
+# degrades the way the page does rather than to a bitmap face.
 DISPLAY = ["Fraunces-SemiBold.ttf", "Fraunces_9pt-SemiBold.ttf",
            "/Library/Fonts/Fraunces-SemiBold.ttf",
+           "/System/Library/Fonts/Supplemental/Georgia Bold.ttf",
+           "/System/Library/Fonts/Supplemental/Times New Roman Bold.ttf",
            "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf"]
 BODY = ["InstrumentSans-Medium.ttf", "/Library/Fonts/InstrumentSans-Medium.ttf",
+        "/System/Library/Fonts/Supplemental/Arial.ttf",
+        "/System/Library/Fonts/Helvetica.ttc",
         "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"]
 
 
@@ -33,6 +41,7 @@ def font(candidates, size):
         for p in (Path(c), Path.home() / "Library/Fonts" / c, Path("/usr/share/fonts") / c):
             if p.exists():
                 return ImageFont.truetype(str(p), size)
+    print("  ! no candidate font found, falling back to a bitmap face:", candidates[0])
     return ImageFont.load_default()
 
 
