@@ -1,0 +1,899 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PassQR Tag — a contact sticker that reaches you without publishing your number</title>
+<meta name="description" content="Stick a coded tag on the windshield, the gate or the kit. Someone who needs you scans it and writes. The relay checks they are really there, then escalates until you answer — and neither side ever holds the other's number.">
+<link rel="canonical" href="https://tag.passqr.com/">
+<meta name="theme-color" content="#101D1A">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tag.passqr.com/">
+<meta property="og:site_name" content="PassQR Tag">
+<meta property="og:title" content="Reachable, without being published">
+<meta property="og:description" content="A contact sticker that carries a code instead of a phone number. The relay checks the sender is really at the tag, then escalates until you answer.">
+<meta property="og:image" content="https://tag.passqr.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Reachable, without being published">
+<meta name="twitter:description" content="A contact sticker that carries a code instead of a phone number. The relay checks the sender is really at the tag, then escalates until you answer.">
+<meta name="twitter:image" content="https://tag.passqr.com/og.png">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#101D1A;
+  --ink-soft:#2E3F3B;
+  --muted:#61736E;
+  --paper:#F5F8F6;
+  --card:#FFFFFF;
+  --line:#DCE7E3;
+  --pine:#0A4F45;
+  --teal:#0E7C6B;
+  --teal-soft:#DCEFEA;
+  --amber:#D2802B;
+  --amber-soft:#F6E6D3;
+  --radius:16px;
+  --maxw:1120px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:2.5px solid var(--teal);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:Fraunces,Georgia,"Times New Roman",serif;font-weight:600;line-height:1.12;letter-spacing:-.015em;margin:0}
+h1{font-size:clamp(2.25rem,5.6vw,3.95rem)}
+h2{font-size:clamp(1.8rem,4vw,2.8rem)}
+h3{font-size:1.16rem;line-height:1.3;font-weight:600}
+p{margin:0}
+
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding-inline:20px}
+section{padding-block:clamp(56px,8vw,104px)}
+.eyebrow{
+  font-size:.76rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--teal);margin-bottom:14px;
+}
+.lede{font-size:clamp(1.05rem,2vw,1.25rem);color:var(--ink-soft);max-width:60ch}
+.muted{color:var(--muted)}
+.small{font-size:.9rem}
+.section-head{max-width:64ch;margin-bottom:clamp(32px,4vw,48px)}
+.section-head p{margin-top:14px}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:.55em;
+  padding:14px 24px;border-radius:999px;
+  font-weight:600;font-size:1rem;text-decoration:none;
+  border:1.5px solid transparent;transition:transform .15s ease,box-shadow .15s ease,background .15s ease;
+  white-space:nowrap;
+}
+.btn-primary{background:var(--pine);color:#EFF7F4;box-shadow:0 6px 0 -1px rgba(16,29,26,.18)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 22px -8px rgba(16,29,26,.5)}
+.btn-ghost{border-color:var(--line);background:var(--card);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--pine);transform:translateY(-2px)}
+.btn-light{background:#EFF7F4;color:var(--pine)}
+.btn-light:hover{transform:translateY(-2px)}
+.btn-outline-light{border-color:rgba(239,247,244,.35);color:#EFF7F4}
+.btn-outline-light:hover{border-color:#EFF7F4}
+.btn-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+
+/* ---------- nav ---------- */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(245,248,246,.86);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+nav{display:flex;align-items:center;gap:24px;height:64px}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none;font-weight:600;font-size:1.05rem;letter-spacing:-.01em}
+.logo .mark{
+  width:28px;height:28px;border-radius:8px;background:var(--pine);
+  display:grid;place-items:center;flex:none;
+}
+.logo .mark svg{width:16px;height:16px}
+.navlinks{display:none;gap:26px;margin-left:auto;font-size:.95rem}
+.navlinks a{text-decoration:none;color:var(--ink-soft);font-weight:500}
+.navlinks a:hover{color:var(--ink)}
+.nav-cta{margin-left:auto;padding:9px 18px;font-size:.92rem}
+@media(min-width:900px){
+  .navlinks{display:flex}
+  .nav-cta{margin-left:0}
+}
+
+/* ---------- hero ---------- */
+.hero{padding-top:clamp(44px,6vw,80px);padding-bottom:clamp(48px,7vw,88px)}
+.hero-grid{display:grid;gap:clamp(40px,6vw,64px);align-items:center}
+@media(min-width:960px){.hero-grid{grid-template-columns:1.05fr .95fr}}
+.hero h1 .hl{
+  background:linear-gradient(transparent 62%, var(--teal-soft) 62%);
+  padding-inline:2px;
+}
+.hero .lede{margin-top:22px}
+.trustline{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:22px;font-size:.9rem;color:var(--muted)}
+.trustline span{display:flex;align-items:center;gap:7px}
+.tick{width:15px;height:15px;flex:none;color:var(--teal)}
+
+/* ---------- phone mock ---------- */
+.stage{position:relative;display:flex;justify-content:center;padding-bottom:24px}
+.phone{
+  width:min(300px,82vw);border-radius:38px;background:var(--ink);
+  padding:11px;box-shadow:0 32px 60px -28px rgba(16,29,26,.62), 0 0 0 1px rgba(16,29,26,.12);
+}
+.screen{
+  border-radius:29px;overflow:hidden;background:linear-gradient(168deg,#1C443C,#0C1D1A 64%);
+  padding:18px 13px 20px;min-height:524px;display:flex;flex-direction:column;gap:12px;
+}
+.statusbar{display:flex;justify-content:space-between;color:rgba(239,247,244,.7);font-size:.72rem;font-weight:600;padding-inline:6px}
+.banner{
+  background:rgba(250,253,251,.95);border-radius:16px;padding:11px 13px;
+  display:flex;gap:10px;align-items:flex-start;
+  box-shadow:0 12px 26px -14px rgba(0,0,0,.7);
+  animation:drop .7s cubic-bezier(.2,.9,.3,1.3) both;
+}
+@keyframes drop{from{opacity:0;transform:translateY(-14px) scale(.96)}to{opacity:1;transform:none}}
+.banner .ic{width:26px;height:26px;border-radius:7px;background:var(--pine);display:grid;place-items:center;flex:none;color:#EFF7F4}
+.banner .ic svg{width:14px;height:14px}
+.banner b{display:block;font-size:.78rem;letter-spacing:.01em}
+.banner p{font-size:.78rem;color:var(--ink-soft);line-height:1.35}
+.banner time{font-size:.68rem;color:var(--muted);margin-left:auto;flex:none}
+
+.chatcard{
+  margin-top:auto;background:#FBFDFC;border-radius:16px;overflow:hidden;
+  box-shadow:0 18px 40px -18px rgba(0,0,0,.8);
+}
+.chat-top{display:flex;align-items:center;gap:9px;padding:12px 13px 10px;border-bottom:1px solid var(--line)}
+.who{width:26px;height:26px;border-radius:50%;background:var(--teal-soft);color:var(--teal);display:grid;place-items:center;flex:none;font-size:.62rem;font-weight:700;letter-spacing:.02em}
+.chat-top .nm{font-size:.82rem;font-weight:600;min-width:0}
+.chat-top .nm span{display:block;font-size:.68rem;color:var(--muted);font-weight:500}
+.presence{
+  margin-left:auto;align-self:center;flex:none;font-size:.6rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  background:var(--teal-soft);color:var(--teal);padding:5px 9px;border-radius:999px;
+}
+.bubbles{padding:13px;display:flex;flex-direction:column;gap:9px}
+.bub{max-width:84%;padding:9px 12px;border-radius:14px;font-size:.81rem;line-height:1.4}
+.bub.them{background:#EDF2F0;color:var(--ink);border-bottom-left-radius:5px;align-self:flex-start}
+.bub.you{background:var(--pine);color:#EFF7F4;border-bottom-right-radius:5px;align-self:flex-end}
+.sysline{font-size:.68rem;color:var(--muted);text-align:center;padding-top:2px}
+.floaty{
+  position:absolute;left:50%;bottom:0;transform:translateX(-50%);
+  background:var(--card);border:1px solid var(--line);border-radius:999px;
+  padding:9px 18px;font-size:.82rem;font-weight:600;white-space:nowrap;
+  box-shadow:0 14px 30px -16px rgba(16,29,26,.5);display:flex;align-items:center;gap:8px;
+}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--teal);flex:none;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* ---------- generic blocks ---------- */
+.band-dark{background:var(--pine);color:#EFF7F4}
+.band-dark h2,.band-dark h3{color:#EFF7F4}
+.band-dark .lede{color:rgba(239,247,244,.78)}
+.band-dark .eyebrow{color:var(--amber)}
+.band-paper{background:#EDF2EF}
+
+.grid{display:grid;gap:18px}
+.g2{grid-template-columns:1fr}
+.g3{grid-template-columns:1fr}
+@media(min-width:700px){.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.g3{grid-template-columns:repeat(3,1fr)}}
+
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:26px 24px;
+}
+.card h3{margin-bottom:9px}
+.card p{color:var(--ink-soft);font-size:.97rem}
+.icon{
+  width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
+  background:var(--teal-soft);color:var(--teal);margin-bottom:16px;
+}
+.icon svg{width:19px;height:19px}
+.icon.amber{background:var(--amber-soft);color:#9A5A18}
+
+.step{display:flex;gap:18px;align-items:flex-start}
+.step .num{
+  width:36px;height:36px;flex:none;border-radius:50%;background:var(--pine);color:#EFF7F4;
+  display:grid;place-items:center;font-weight:600;font-size:.95rem;font-family:Fraunces,serif;
+}
+
+/* ---------- signals ---------- */
+.signals{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+}
+.sig{display:flex;gap:16px;align-items:flex-start;padding:17px 22px;border-bottom:1px solid var(--line)}
+.sig:last-child{border-bottom:0}
+.sig .sk{width:34px;height:34px;flex:none;border-radius:10px;background:var(--teal-soft);color:var(--teal);display:grid;place-items:center}
+.sig .sk svg{width:17px;height:17px}
+.sig .sk.off{background:#EEF1F0;color:var(--muted)}
+.sig b{display:block;font-size:.98rem}
+.sig p{font-size:.9rem;color:var(--muted);margin-top:2px}
+.sig .soon{margin-left:auto;flex:none;font-size:.68rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);padding-top:8px}
+.tiers{display:grid;gap:12px;grid-template-columns:1fr;margin-top:18px}
+@media(min-width:760px){.tiers{grid-template-columns:repeat(3,1fr)}}
+.tier{border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;background:var(--card)}
+.tier b{font-family:Fraunces,serif;font-size:1.05rem}
+.tier p{font-size:.9rem;color:var(--muted);margin-top:6px}
+.tier.hi{border-color:var(--teal);background:var(--teal-soft)}
+.tier.hi p{color:#0B5C4F}
+
+/* ---------- the ladder (the one loud thing) ---------- */
+.ladder{position:relative;margin-top:8px}
+.ladder::before{
+  content:"";position:absolute;left:91px;top:30px;bottom:34px;width:1px;
+  background:rgba(239,247,244,.22);
+}
+.rung{
+  position:relative;
+  display:grid;gap:4px 20px;grid-template-columns:82px 1fr;
+  padding:20px 0;border-top:1px solid rgba(239,247,244,.18);
+}
+.rung::after{
+  content:"";position:absolute;left:87px;top:26px;width:9px;height:9px;border-radius:50%;
+  background:rgba(239,247,244,.5);box-shadow:0 0 0 5px var(--pine);
+}
+.rung.last::after{background:var(--amber)}
+.rung:first-child{border-top:0}
+.rung .clock{
+  font-family:Fraunces,serif;font-size:1.45rem;line-height:1;color:#EFF7F4;padding-top:2px;
+}
+.rung .clock span{display:block;font-family:"Instrument Sans",sans-serif;font-size:.68rem;letter-spacing:.11em;text-transform:uppercase;color:rgba(239,247,244,.5);margin-top:7px;font-weight:600}
+.rung b{font-size:1.02rem}
+.rung p{grid-column:2;font-size:.94rem;color:rgba(239,247,244,.72);max-width:52ch}
+.rung.last b{color:var(--amber)}
+.disclose{display:grid;gap:14px;margin-top:8px}
+.dl{display:flex;gap:14px;align-items:flex-start}
+.dl .lvl{
+  flex:none;font-size:.7rem;font-weight:700;letter-spacing:.08em;
+  background:rgba(239,247,244,.12);color:#EFF7F4;padding:5px 10px;border-radius:999px;margin-top:2px;
+}
+.dl p{font-size:.95rem;color:rgba(239,247,244,.78);max-width:56ch}
+.dl b{color:#EFF7F4}
+
+/* ---------- places ---------- */
+.place{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px 22px;display:flex;flex-direction:column;gap:9px;
+}
+.place .hd{display:flex;align-items:center;gap:11px}
+.place .hd svg{width:19px;height:19px;color:var(--teal);flex:none}
+.place b{font-size:1rem}
+.place p{font-size:.93rem;color:var(--ink-soft)}
+
+/* ---------- status ---------- */
+.statusgrid{display:grid;gap:clamp(30px,4vw,52px);align-items:center}
+@media(min-width:900px){.statusgrid{grid-template-columns:1.1fr .9fr}}
+.factcard{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;
+}
+.factcard .row{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--line)}
+.factcard .row:last-child{border-bottom:0;padding-bottom:0}
+.factcard .row:first-child{padding-top:0}
+.factcard .k{font-size:.88rem;color:var(--muted)}
+.factcard .v{font-size:.92rem;font-weight:600;text-align:right}
+.livechip{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.7rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+  background:var(--teal-soft);color:var(--teal);padding:6px 12px;border-radius:999px;margin-bottom:16px;
+}
+
+/* ---------- sticker mock ---------- */
+.sticker{
+  background:#FBFDFC;border-radius:18px;padding:24px 22px 20px;text-align:center;
+  max-width:300px;margin-inline:auto;color:var(--ink);
+  box-shadow:0 34px 64px -30px rgba(0,0,0,.85);transform:rotate(-1.6deg);
+}
+.sticker .qr{width:min(150px,58%);margin:0 auto 14px}
+.sticker .qr svg{width:100%;height:auto;display:block}
+.sticker h3{font-size:1.12rem;color:var(--ink)}
+.band-dark .sticker h3{color:var(--ink)}
+.sticker .sub{font-size:.88rem;color:var(--muted);margin-top:6px}
+.sticker .code{
+  margin-top:14px;font-size:1.02rem;font-weight:600;letter-spacing:.16em;
+  padding-top:13px;border-top:1px solid var(--line);
+}
+.sticker .foot{margin-top:6px;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+
+/* ---------- faq ---------- */
+.faq{max-width:820px;margin-inline:auto}
+details{border-bottom:1px solid var(--line);padding:18px 0}
+summary{
+  cursor:pointer;font-weight:600;font-size:1.02rem;list-style:none;
+  display:flex;justify-content:space-between;gap:16px;align-items:flex-start;
+}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:1.5rem;line-height:1;color:var(--teal);flex:none;font-weight:400}
+details[open] summary::after{content:"–"}
+details p{margin-top:12px;color:var(--ink-soft);font-size:.97rem;max-width:70ch}
+
+/* ---------- final cta ---------- */
+.finale{text-align:center}
+.finale .lede{margin-inline:auto;margin-top:18px}
+.finale .btn-row{justify-content:center}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink);color:rgba(239,247,244,.72);padding-block:44px;font-size:.92rem}
+.foot{display:flex;flex-wrap:wrap;gap:22px;align-items:center;justify-content:space-between}
+.foot a{text-decoration:none;color:rgba(239,247,244,.72)}
+.foot a:hover{color:#EFF7F4}
+.footlinks{display:flex;flex-wrap:wrap;gap:20px}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="logo" href="/">
+        <span class="mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#EFF7F4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 14h3M20 14v3M14 20h3M20 20v1"/>
+          </svg>
+        </span>
+        <span>PassQR <span style="color:var(--muted);font-weight:500">Tag</span></span>
+      </a>
+      <div class="navlinks">
+        <a href="#how">How it works</a>
+        <a href="#presence">Presence</a>
+        <a href="#ladder">Escalation</a>
+        <a href="#places">Where to put one</a>
+        <a href="#status">Status</a>
+      </div>
+      <a class="btn btn-primary nav-cta" data-beta href="mailto:hello@passqr.com?subject=PassQR%20Tag%20beta">Ask for a tag</a>
+    </nav>
+  </div>
+</header>
+
+<!-- hero -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Anonymous contact tag · Private beta</p>
+      <h1>Be reachable without <span class="hl">publishing your number</span>.</h1>
+      <p class="lede">
+        A PassQR Tag on the windshield, the gate or the toolbox carries a code and nothing
+        else. Someone who needs you scans it and writes. The relay works out whether they are
+        really standing there, then keeps trying to reach you until you answer.
+      </p>
+      <p class="lede" style="margin-top:14px">
+        Neither of you ever holds an identifier for the other.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-primary" data-beta href="mailto:hello@passqr.com?subject=PassQR%20Tag%20beta">
+          Ask for a tag
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="#how">See what a scan does</a>
+      </div>
+      <div class="trustline">
+        <span><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> No app to scan it</span>
+        <span><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> No account for the sender</span>
+        <span><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Nothing printed but a code</span>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="phone">
+        <div class="screen">
+          <div class="statusbar"><span>9:41</span><span>PassQR Tag</span></div>
+
+          <div class="banner">
+            <span class="ic">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Z"/><circle cx="12" cy="9" r="2.4"/></svg>
+            </span>
+            <div>
+              <b>Someone is at your car</b>
+              <p>Urgent · checked present at the tag</p>
+            </div>
+            <time>now</time>
+          </div>
+
+          <div class="chatcard">
+            <div class="chat-top">
+              <span class="who">A</span>
+              <span class="nm">Anonymous<span>Scanned 40 seconds ago</span></span>
+              <span class="presence">Present</span>
+            </div>
+            <div class="bubbles">
+              <div class="bub them">Your lights are on and it's about to rain.</div>
+              <div class="bub you">Thank you — two minutes away.</div>
+              <div class="bub them">No rush, I'll wait by the meter.</div>
+              <p class="sysline">No phone numbers were exchanged</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="floaty"><span class="dot"></span> The tag never held your number</div>
+    </div>
+  </div>
+</section>
+
+<!-- the trade -->
+<section class="band-paper">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">The problem with a sticker</p>
+      <h2>Every contact sticker makes the same trade.</h2>
+      <p class="lede">
+        To be reachable you publish a phone number. To protect a phone number you become
+        unreachable. Most people pick the second and hope nothing happens.
+      </p>
+    </div>
+    <div class="grid g3">
+      <div class="card">
+        <span class="icon amber" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+        </span>
+        <h3>A printed number is public forever</h3>
+        <p>It is readable by everyone who walks past, photographable from ten feet, and permanent the moment it is scraped. You cannot take it back off the windshield.</p>
+      </div>
+      <div class="card">
+        <span class="icon amber" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg>
+        </span>
+        <h3>You cannot tell who is calling</h3>
+        <p>A neighbour who saw smoke and a cold caller reach you the same way, at the same hour, with the same ringtone. So eventually you stop picking up.</p>
+      </div>
+      <div class="card">
+        <span class="icon amber" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/></svg>
+        </span>
+        <h3>A note under the wiper is not a channel</h3>
+        <p>When it genuinely matters — a leak, a tow truck, a child locked in — paper waits for you to come back. That is the one case the sticker existed for.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- how -->
+<section id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">How it works</p>
+      <h2>Three moving parts, and a stranger only ever sees the first.</h2>
+    </div>
+    <div class="grid g3">
+      <div class="card">
+        <div class="step" style="margin-bottom:14px">
+          <span class="num">1</span>
+          <h3 style="padding-top:6px">They scan and write</h3>
+        </div>
+        <p>A page opens in whatever browser is already on their phone. They pick how urgent it is and type — or record a voice note. No app, no signup, no email address.</p>
+      </div>
+      <div class="card">
+        <div class="step" style="margin-bottom:14px">
+          <span class="num">2</span>
+          <h3 style="padding-top:6px">The relay checks they are there</h3>
+        </div>
+        <p>Scanning a photo of your tag is not the same as standing next to it. The relay scores several independent signals before it decides how seriously to treat the message.</p>
+      </div>
+      <div class="card">
+        <div class="step" style="margin-bottom:14px">
+          <span class="num">3</span>
+          <h3 style="padding-top:6px">It escalates until you answer</h3>
+        </div>
+        <p>Wallet pass, then push, then a text, then a second contact you nominated — on a clock, in order, stopping the moment you reply. A routine note never does any of that.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- presence -->
+<section id="presence" class="band-paper">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Presence</p>
+      <h2>Anyone can photograph a QR code. Not everyone can be standing at it.</h2>
+      <p class="lede">
+        That difference is the whole product. A stranger at your car deserves to interrupt your
+        evening; the same code screenshotted in a car park last Tuesday does not. So the relay
+        scores it rather than taking anyone's word.
+      </p>
+    </div>
+
+    <div class="signals">
+      <div class="sig">
+        <span class="sk" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 3v6h-6"/></svg></span>
+        <div><b>A code that changes</b><p>The tag answers with a token that rotates. A screenshot from last week carries a stale one.</p></div>
+      </div>
+      <div class="sig">
+        <span class="sk" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2.5"/><path d="M8 20h8M12 9l4 2-4 2Z"/></svg></span>
+        <div><b>A live photo of the tag</b><p>The camera decodes the tag in real time. You cannot do that from an image saved to the roll.</p></div>
+      </div>
+      <div class="sig">
+        <span class="sk" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Z"/><circle cx="12" cy="9" r="2.4"/></svg></span>
+        <div><b>Where the phone says it is</b><p>Compared against the tag's own position, which is never sent to the person scanning.</p></div>
+      </div>
+      <div class="sig">
+        <span class="sk" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-8"/><path d="M8.5 15.5a5 5 0 0 1 7 0M5.5 12.5a9 9 0 0 1 13 0"/><circle cx="12" cy="20.5" r="1.4"/></svg></span>
+        <div><b>A short-range beacon</b><p>A radio that only carries across a driveway, so hearing it is itself evidence of being close.</p></div>
+      </div>
+      <div class="sig">
+        <span class="sk" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M9 6.5h6"/></svg></span>
+        <div><b>How the page was opened</b><p>The phone itself can confirm the visit began at a physical tag rather than a forwarded link.</p></div>
+      </div>
+      <div class="sig">
+        <span class="sk off" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+        <div><b>Timing that does not add up</b><p>Two scans of the same tag minutes apart and a continent away cancel each other out. This one subtracts.</p></div>
+        <span class="soon">Penalty</span>
+      </div>
+    </div>
+
+    <div class="tiers">
+      <div class="tier hi"><b>Present</b><p>Enough independent evidence to interrupt you. Critical messages can escalate all the way.</p></div>
+      <div class="tier"><b>Likely</b><p>Probably there. Slower ladder, longer gaps, less disclosed at every step.</p></div>
+      <div class="tier"><b>Unverified</b><p>Delivered quietly to your inbox and nowhere else. It never rings anything.</p></div>
+    </div>
+    <p class="small muted" style="margin-top:16px;max-width:70ch">
+      Signals are weighted and added, not ticked off, so no single one can be faked into a high
+      score. Which signals a given phone can offer depends on the phone and the browser; the
+      tag works either way.
+    </p>
+  </div>
+</section>
+
+<!-- ladder -->
+<section id="ladder" class="band-dark">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Escalation and disclosure</p>
+      <h2>Reaching you is a timed escalation, not a send.</h2>
+      <p class="lede">
+        A message does not simply arrive and hope. It climbs, one channel at a time, and stops
+        the instant you reply. This is one tag's ladder for something critical from someone
+        checked present.
+      </p>
+    </div>
+
+    <div class="grid g2" style="gap:clamp(36px,5vw,56px);align-items:start">
+      <div class="ladder">
+        <div class="rung">
+          <div class="clock">0:00<span>Arrives</span></div>
+          <b>Your wallet pass, your phone, and a text — together</b>
+          <p>Three channels at once, because at this severity the point is not to be polite about it.</p>
+        </div>
+        <div class="rung">
+          <div class="clock">1:30<span>No answer</span></div>
+          <b>Your second contact</b>
+          <p>Someone you nominated and who accepted. They were asked, never assigned.</p>
+        </div>
+        <div class="rung last">
+          <div class="clock">3:30<span>Still nothing</span></div>
+          <b>The tag says what it is on, and where</b>
+          <p>Only now, only for something critical, and only after every channel you own has gone unanswered.</p>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="margin-bottom:18px">What the sender learns, and when</h3>
+        <div class="disclose">
+          <div class="dl">
+            <span class="lvl">Default</span>
+            <p><b>That it was delivered.</b> Nothing else. No name, no object, no place. This is where nearly every message stays from beginning to end.</p>
+          </div>
+          <div class="dl">
+            <span class="lvl">You reply</span>
+            <p><b>Your display name.</b> Unlocked by you answering, not by them asking, and it is whatever name you chose to show.</p>
+          </div>
+          <div class="dl">
+            <span class="lvl">Last resort</span>
+            <p><b>What the tag is on and roughly where.</b> Critical messages only, after the whole ladder has run out. It is the fire-and-tow-truck case, and nothing less.</p>
+          </div>
+        </div>
+        <p class="small" style="margin-top:22px;color:rgba(239,247,244,.6);max-width:52ch">
+          Each tag has its own settings. Turn channels off, cap how much can ever be disclosed,
+          stretch the clocks, or forbid voice notes — per tag, not per account.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- places -->
+<section id="places">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Where to put one</p>
+      <h2>Anywhere a stranger might need the person who owns the thing.</h2>
+    </div>
+    <div class="grid g3">
+      <div class="place">
+        <div class="hd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17h14l-1.5-6.5a2 2 0 0 0-2-1.5h-7a2 2 0 0 0-2 1.5Z"/><circle cx="7.5" cy="17" r="1.6"/><circle cx="16.5" cy="17" r="1.6"/></svg><b>On the windshield</b></div>
+        <p>Blocked in, lights left on, a knock while you are parked in a stranger's street. The reason most people want one.</p>
+      </div>
+      <div class="place">
+        <div class="hd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V6l9-3 9 3v15"/><path d="M9 21v-6h6v6"/></svg><b>At a gate or an empty unit</b></div>
+        <p>Deliveries, contractors and neighbours reach whoever is actually on duty, without a name plate telling everyone who that is.</p>
+      </div>
+      <div class="place">
+        <div class="hd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18h18M5 18l1.6-6h10.8L19 18"/><path d="M12 12V5l5 2-5 2"/></svg><b>Boats, trailers and site plant</b></div>
+        <p>Things that sit unattended for weeks in places you are not. A dragging mooring is worth a phone call at 2am.</p>
+      </div>
+      <div class="place">
+        <div class="hd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="7" width="19" height="13" rx="2.5"/><path d="M9 7V5.5A2.5 2.5 0 0 1 11.5 3h1A2.5 2.5 0 0 1 15 5.5V7"/></svg><b>Tools and equipment</b></div>
+        <p>The finder writes to the owner without either of them learning who the other is, which is exactly why people bother returning things.</p>
+      </div>
+      <div class="place">
+        <div class="hd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6Z"/><path d="M9 12l2 2 4-4"/></svg><b>Holiday lets and shared cars</b></div>
+        <p>Every guest reaches you the same way and none of them keeps your number after checkout.</p>
+      </div>
+      <div class="place">
+        <div class="hd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><b>On a person's behalf</b></div>
+        <p>A carer, a lone worker, a teenager's bike. The tag reaches an adult who chose to be reachable, and nobody has to hand out a mobile number.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- privacy -->
+<section class="band-paper">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">What neither side gives up</p>
+      <h2>Anonymity that survives the conversation, not just the first message.</h2>
+    </div>
+    <div class="grid g2">
+      <div class="card">
+        <h3>The sender is a pseudonym, per tag</h3>
+        <p>The same person writing to two different tags is two unrelated strangers. There is no account behind them to join up, because they never made one.</p>
+      </div>
+      <div class="card">
+        <h3>Conversations erase themselves</h3>
+        <p>A set number of days after a thread closes, its contents are stripped — messages, voice notes, photos, location. Two days by default, up to thirty, and never "keep forever".</p>
+      </div>
+      <div class="card">
+        <h3>Voice, both directions</h3>
+        <p>Some things are faster said than typed, and an accent is easier to hear. Voice notes work in the browser without an app on either end.</p>
+      </div>
+      <div class="card">
+        <h3>A tag can be reported</h3>
+        <p>If a tag is used to harass someone, the person being harassed can report it — on a path the tag's owner can never see or silence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- credential -->
+<section>
+  <div class="wrap statusgrid">
+    <div>
+      <p class="eyebrow">Beyond messaging</p>
+      <h2>A receipt that someone was at a place, at a time.</h2>
+      <p class="lede" style="margin-top:16px">
+        The same presence check produces a signed visit receipt, small enough to travel inside a
+        QR code and verifiable offline by any standard library — no call back to us, so we never
+        learn when a receipt is checked or by whom.
+      </p>
+      <p class="lede" style="margin-top:14px">
+        Two organisations holding receipts about the same person cannot tell that they do. Which
+        is why this part interests people who will never deploy anonymous messaging: home care
+        visit verification, field service, inspections, adjusters, custody handovers.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="mailto:hello@passqr.com?subject=PassQR%20Tag%20—%20presence%20credential">Talk to us about this</a>
+      </div>
+    </div>
+    <div>
+      <div class="sticker">
+        <div class="qr" aria-hidden="true">
+          <svg viewBox="0 0 60 60" role="img">
+            <rect width="60" height="60" rx="6" fill="#0A4F45"/>
+            <g fill="none" stroke="#EFF7F4" stroke-width="4">
+              <rect x="9" y="9" width="13" height="13" rx="2.5"/>
+              <rect x="38" y="9" width="13" height="13" rx="2.5"/>
+              <rect x="9" y="38" width="13" height="13" rx="2.5"/>
+            </g>
+            <g fill="#EFF7F4">
+              <rect x="29" y="9" width="4" height="4"/><rect x="29" y="17" width="4" height="4"/>
+              <rect x="29" y="29" width="4" height="4"/><rect x="37" y="29" width="4" height="4"/>
+              <rect x="45" y="29" width="4" height="4"/><rect x="29" y="37" width="4" height="4"/>
+              <rect x="37" y="41" width="4" height="4"/><rect x="45" y="37" width="4" height="4"/>
+              <rect x="41" y="47" width="4" height="4"/><rect x="9" y="29" width="4" height="4"/>
+              <rect x="17" y="29" width="4" height="4"/><rect x="21" y="21" width="4" height="4"/>
+            </g>
+          </svg>
+        </div>
+        <h3>Need the owner?</h3>
+        <p class="sub">Scan this. Say what's wrong. No number, no app.</p>
+        <p class="code">K7MD · 4QXA</p>
+        <p class="foot">Patent pending</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- status -->
+<section id="status" class="band-paper">
+  <div class="wrap statusgrid">
+    <div>
+      <span class="livechip"><span class="dot"></span> Private beta</span>
+      <h2>Where this actually is today.</h2>
+      <p class="lede" style="margin-top:16px">
+        The relay and the browser side are live and in daily use on real tags. The iPhone app is
+        with Apple. We would rather tell you that than let a feature grid imply otherwise.
+      </p>
+      <p class="lede" style="margin-top:14px">
+        If you want a tag on your own windshield while it is still early, say so and we will send
+        you one.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-primary" data-beta href="mailto:hello@passqr.com?subject=PassQR%20Tag%20beta">Ask for a tag</a>
+      </div>
+    </div>
+    <div class="factcard">
+      <div class="row"><span class="k">Relay and browser scan page</span><span class="v">Live</span></div>
+      <div class="row"><span class="k">Two-way thread and voice notes</span><span class="v">Live</span></div>
+      <div class="row"><span class="k">Owner alerts by wallet, push and text</span><span class="v">Live</span></div>
+      <div class="row"><span class="k">Second contact by invitation</span><span class="v">Live</span></div>
+      <div class="row"><span class="k">iPhone app</span><span class="v">With Apple for review</span></div>
+      <div class="row"><span class="k">Android</span><span class="v">Browser only for now</span></div>
+      <div class="row"><span class="k">Printed tags</span><span class="v">Pilot batch</span></div>
+      <div class="row"><span class="k">Patents</span><span class="v">Two provisionals filed</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- faq -->
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Questions</p>
+      <h2>The things people ask before they stick one on.</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Does the person scanning it need an app?</summary>
+        <p>No. The tag opens a page in whatever browser is already on their phone. They can read, write, send a voice note and follow the conversation without installing or signing up for anything.</p>
+      </details>
+      <details>
+        <summary>Can someone work out who I am from the tag?</summary>
+        <p>Not from the tag. It carries a code and nothing else — no name, no number, no plate, no address. What a sender is shown depends on how far the conversation gets, and by default that is only that the message was delivered.</p>
+      </details>
+      <details>
+        <summary>What stops people using it to spam or harass me?</summary>
+        <p>Three things. A message from someone who cannot be shown to be at the tag never rings anything — it waits in your inbox. You can block a sender for that tag. And a tag that is misused can be reported by the person on the other end, on a channel its owner cannot see.</p>
+      </details>
+      <details>
+        <summary>What happens if I miss it?</summary>
+        <p>That depends on how urgent the sender said it was. A routine note waits. An urgent one tries your phone, then texts you. A critical one runs the full ladder, including a second contact you nominated, and only then releases the last details.</p>
+      </details>
+      <details>
+        <summary>Is my location on the tag?</summary>
+        <p>No. The tag's position is held by the relay, never sent to the phone scanning it. That is what lets the relay check how close someone is without telling them where your car lives.</p>
+      </details>
+      <details>
+        <summary>How long do you keep the messages?</summary>
+        <p>Contents are erased a set number of days after a conversation closes — two by default, adjustable between one and thirty. There is no "keep forever" setting, because a sender's words were given to a relay that promised to be temporary.</p>
+      </details>
+      <details>
+        <summary>Can I turn the noisy parts off?</summary>
+        <p>Yes, per tag. Drop channels you never want used, cap how much can ever be disclosed, lengthen the clocks, or switch voice notes off. A tag with everything turned down still collects messages in your inbox.</p>
+      </details>
+      <details>
+        <summary>Where can I get one?</summary>
+        <p>We are handing out tags to a small beta group while the iPhone app clears review. Email hello@passqr.com and tell us what you would put it on.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- finale -->
+<section class="band-dark finale">
+  <div class="wrap">
+    <h2>One code on a sticker. Nothing else published.</h2>
+    <p class="lede">
+      Tell us what you would put a tag on and we will send you one from the beta batch,
+      along with the settings that make sense for it.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-light" data-beta href="mailto:hello@passqr.com?subject=PassQR%20Tag%20beta">
+        Ask for a tag
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn btn-outline-light" href="https://passqr.com">See the rest of PassQR</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <a class="logo" href="/" style="color:#EFF7F4">
+        <span class="mark" style="background:#EFF7F4">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#101D1A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 14h3M20 14v3M14 20h3M20 20v1"/>
+          </svg>
+        </span>
+        <span>PassQR <span style="color:rgba(239,247,244,.55);font-weight:500">Tag</span></span>
+      </a>
+      <p class="small" style="margin-top:10px;color:rgba(239,247,244,.5)">A DaSecure product. Patent pending.</p>
+    </div>
+    <div class="footlinks">
+      <a href="https://passqr.com">PassQR</a>
+      <a href="https://loyalty.passqr.com">Loyalty</a>
+      <a href="https://dasecure.com">DaSecure</a>
+      <a href="https://www.passqr.com/privacy">Privacy</a>
+      <a href="mailto:hello@passqr.com">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* Single source of truth for the beta CTA. Change this one line to repoint every
+     "Ask for a tag" button on the page. When the iPhone app is approved, swap this
+     for the App Store URL and change the button labels in the markup to match. */
+  var BETA_URL = "mailto:hello@passqr.com?subject=PassQR%20Tag%20beta";
+  document.querySelectorAll("[data-beta]").forEach(function (a) { a.href = BETA_URL; });
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "PassQR Tag",
+      "applicationCategory": "SecurityApplication",
+      "operatingSystem": "Web, iOS",
+      "url": "https://tag.passqr.com/",
+      "description": "An anonymous contact tag. A coded sticker lets a stranger reach the owner of a car, gate or piece of equipment without either side holding an identifier for the other. The relay scores whether the sender is physically present and escalates across channels until the owner answers.",
+      "publisher": { "@type": "Organization", "name": "DaSecure", "url": "https://dasecure.com" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does the person scanning it need an app?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. The tag opens a page in whatever browser is already on their phone. They can read, write, send a voice note and follow the conversation without installing or signing up for anything." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can someone work out who I am from the tag?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Not from the tag. It carries a code and nothing else. What a sender is shown depends on how far the conversation gets, and by default that is only that the message was delivered." }
+        },
+        {
+          "@type": "Question",
+          "name": "What stops people using it to spam or harass me?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A message from someone who cannot be shown to be at the tag never rings anything and waits in the inbox. Senders can be blocked per tag. A tag that is misused can be reported on a channel its owner cannot see." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is my location on the tag?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. The tag's position is held by the relay and never sent to the phone scanning it, which is how the relay can check how close someone is without disclosing where the tag lives." }
+        },
+        {
+          "@type": "Question",
+          "name": "How long do you keep the messages?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Contents are erased a set number of days after a conversation closes — two by default, adjustable between one and thirty. There is no keep-forever setting." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+</body>
+</html>
