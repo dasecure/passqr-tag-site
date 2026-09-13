@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="PassQR Tag">
+  <rect width="64" height="64" rx="14" fill="#0A4F45"/>
+  <g fill="none" stroke="#EFF7F4" stroke-width="5" stroke-linejoin="round">
+    <rect x="11" y="11" width="17" height="17" rx="3.5"/>
+    <rect x="36" y="11" width="17" height="17" rx="3.5"/>
+    <rect x="11" y="36" width="17" height="17" rx="3.5"/>
+  </g>
+  <circle cx="44.5" cy="44.5" r="9.5" fill="#0E7C6B"/>
+  <path d="M44.5 38.4c-3 0-5.4 2.4-5.4 5.4 0 3.9 5.4 8.4 5.4 8.4s5.4-4.5 5.4-8.4c0-3-2.4-5.4-5.4-5.4Z"
+        fill="#EFF7F4"/>
+</svg>

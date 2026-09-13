@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Not found — PassQR Tag</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#101D1A">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#101D1A;--ink-soft:#2E3F3B;--muted:#61736E;--paper:#F5F8F6;--card:#FFFFFF;--line:#DCE7E3;--pine:#0A4F45;--teal:#0E7C6B}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;background:var(--paper);color:var(--ink);
+  font-family:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  font-size:17px;line-height:1.6;display:grid;place-items:center;padding:28px;
+  -webkit-font-smoothing:antialiased;
+}
+.box{max-width:560px;text-align:center}
+h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:clamp(1.9rem,5vw,2.7rem);line-height:1.14;letter-spacing:-.015em;margin:0 0 16px}
+p{margin:0;color:var(--ink-soft)}
+.mark{width:44px;height:44px;border-radius:13px;background:var(--pine);display:grid;place-items:center;margin:0 auto 26px}
+.mark svg{width:24px;height:24px}
+.btn{
+  display:inline-flex;align-items:center;gap:.55em;margin-top:28px;
+  padding:14px 24px;border-radius:999px;background:var(--pine);color:#EFF7F4;
+  font-weight:600;text-decoration:none;box-shadow:0 6px 0 -1px rgba(16,29,26,.18);
+}
+.alt{margin-top:18px;font-size:.92rem;color:var(--muted)}
+.alt a{color:var(--teal)}
+:focus-visible{outline:2.5px solid var(--teal);outline-offset:3px;border-radius:4px}
+</style>
+</head>
+<body>
+  <div class="box">
+    <span class="mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#EFF7F4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/>
+        <rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 14h3M20 14v3M14 20h3M20 20v1"/>
+      </svg>
+    </span>
+    <h1>There's nothing at this address.</h1>
+    <p>
+      If you scanned a physical tag and landed here, the tag is answering at a different
+      address — scan it again, or write to us and we'll sort it out.
+    </p>
+    <a class="btn" href="/">Go to the PassQR Tag page</a>
+    <p class="alt">Still stuck? <a href="mailto:hello@passqr.com">hello@passqr.com</a></p>
+  </div>
+</body>
+</html>
