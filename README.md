@@ -88,7 +88,10 @@ presence note, on the sticker mock, and in the footer. Drop it anywhere:
 | `pp quiet` | white cards, or anywhere it would compete with a heading |
 
 The glyph is a shield around the PassQR finder square, so the chip reads as part
-of the mark rather than as a stock badge.
+of the mark rather than as a stock badge. Its colours read the house tokens with
+literal fallbacks, so the same block can be pasted into a site that has none of
+them. Keep this copy and the component sheet identical -- the sheet is where the
+component is documented for reuse across DaSecure sites.
 
 Three rules for anyone editing it:
 

@@ -300,15 +300,16 @@ nav{display:flex;align-items:center;gap:24px;height:64px}
 .pp{
   display:inline-flex;align-items:center;gap:8px;vertical-align:middle;
   padding:6px 13px 6px 11px;border-radius:999px;
-  background:var(--teal-soft);color:#0B5C4F;border:1px solid rgba(14,124,107,.22);
+  background:var(--teal-soft,#DCEFEA);color:#0B5C4F;
+  border:1px solid rgba(14,124,107,.22);
   font-size:.71rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
   line-height:1;white-space:nowrap;
 }
-.pp svg{width:14px;height:16px;flex:none;color:var(--teal)}
+.pp svg{width:14px;height:16px;flex:none;color:var(--teal,#0E7C6B)}
 .pp.on-dark{background:rgba(239,247,244,.1);color:#EFF7F4;border-color:rgba(239,247,244,.24)}
-.pp.on-dark svg{color:var(--amber)}
-.pp.quiet{background:transparent;color:var(--muted);border-color:var(--line)}
-.pp.quiet svg{color:var(--muted)}
+.pp.on-dark svg{color:var(--amber,#D2802B)}
+.pp.quiet{background:transparent;color:var(--muted,#61736E);border-color:var(--line,#DCE7E3)}
+.pp.quiet svg{color:var(--muted,#61736E)}
 
 /* ---------- sticker mock ---------- */
 .sticker{
