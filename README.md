@@ -1,6 +1,6 @@
 # tag.passqr.com
 
-Marketing site for **PassQR Tag** — the anonymous contact tag. A coded sticker that lets a
+Marketing site for **PassQR Tag** — the private contact tag. A coded sticker that lets a
 stranger reach the owner of a car, gate or piece of kit without either side holding an
 identifier for the other.
 
