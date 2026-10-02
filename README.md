@@ -30,10 +30,11 @@ The "build" is a copy step that stages only the public files, so `tools/` and `R
 are never served:
 
 ```
-mkdir -p _site && cp index.html 404.html og.png favicon.svg apple-touch-icon.png robots.txt sitemap.xml _headers _site/
+mkdir -p _site && cp index.html 404.html og.png favicon.svg apple-touch-icon.png robots.txt sitemap.xml _headers _site/ && cp -R media _site/
 ```
 
-Output directory is `_site`. **If you add a public file, add it to that command**
+Output directory is `_site`. `media/` holds the hero video (HLS ladder, poster, MP4 fallback, captions) and is copied whole;
+re-cuts go in a new `media/tag-launch/v<N>/` so the immutable cache never serves a stale copy. **If you add a public file, add it to that command**
 (Pages dashboard → Settings → Builds & deployments) or it will not ship.
 
 ## The two PNGs cannot be pushed through the GitHub MCP

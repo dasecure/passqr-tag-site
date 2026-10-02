@@ -171,6 +171,17 @@ nav{display:flex;align-items:center;gap:24px;height:64px}
 .bub.them{background:#EDF2F0;color:var(--ink);border-bottom-left-radius:5px;align-self:flex-start}
 .bub.you{background:var(--pine);color:#EFF7F4;border-bottom-right-radius:5px;align-self:flex-end}
 .sysline{font-size:.68rem;color:var(--muted);text-align:center;padding-top:2px}
+/* hero video (replaces the static phone screen; HLS ladder in /media/tag-launch/v1/) */
+.screen.hv{padding:0;gap:0;min-height:0;display:block;position:relative;aspect-ratio:9/16;
+  background:#F5F8F6 url(/media/tag-launch/v1/poster.webp) center/cover no-repeat}
+.hv video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:transparent;opacity:0;transition:opacity .35s ease}
+.hv video.on{opacity:1}
+.hv video::cue{font:600 12px/1.3 "Instrument Sans",system-ui,sans-serif;background:rgba(16,29,26,.8);color:#F5F8F6}
+.hv-snd{position:absolute;right:9px;top:9px;display:inline-flex;align-items:center;gap:6px;padding:7px 11px;
+  font:inherit;font-size:.72rem;font-weight:600;line-height:1;border-radius:999px;cursor:pointer;
+  background:rgba(16,29,26,.84);color:#EFF7F4;border:1px solid rgba(239,247,244,.2)}
+.hv-snd:hover{background:var(--pine)}
+.hv-snd[hidden]{display:none}
 .floaty{
   position:absolute;left:50%;bottom:0;transform:translateX(-50%);
   background:var(--card);border:1px solid var(--line);border-radius:999px;
@@ -415,33 +426,11 @@ footer{background:var(--ink);color:rgba(239,247,244,.72);padding-block:44px;font
 
     <div class="stage">
       <div class="phone">
-        <div class="screen">
-          <div class="statusbar"><span>9:41</span><span>PassQR Tag</span></div>
-
-          <div class="banner">
-            <span class="ic">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Z"/><circle cx="12" cy="9" r="2.4"/></svg>
-            </span>
-            <div>
-              <b>Someone is at your car</b>
-              <p>Urgent · checked present at the tag</p>
-            </div>
-            <time>now</time>
-          </div>
-
-          <div class="chatcard">
-            <div class="chat-top">
-              <span class="who">A</span>
-              <span class="nm">Passer-by<span>Scanned 40 seconds ago</span></span>
-              <span class="presence">Present</span>
-            </div>
-            <div class="bubbles">
-              <div class="bub them">Your lights are on and it's about to rain.</div>
-              <div class="bub you">Thank you — two minutes away.</div>
-              <div class="bub them">No rush, I'll wait by the meter.</div>
-              <p class="sysline">No phone numbers were exchanged</p>
-            </div>
-          </div>
+        <div class="screen hv">
+          <video id="hvv" muted loop playsinline preload="metadata" poster="/media/tag-launch/v1/poster.webp" aria-label="PassQR Tag in 45 seconds: a contact sticker that reaches you without publishing your number">
+            <track kind="captions" src="/media/tag-launch/v1/captions.en.vtt" srclang="en" label="English">
+          </video>
+          <button class="hv-snd" id="hvs" type="button"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>Play with sound</button>
         </div>
       </div>
       <div class="floaty"><span class="dot"></span> The tag never held your number</div>
@@ -862,6 +851,44 @@ footer{background:var(--ink);color:rgba(239,247,244,.72);padding-block:44px;font
   </div>
 </footer>
 
+<script>
+  /* Hero video: native HLS on Safari/iOS, hls.js light elsewhere, MP4 fallback.
+     Autoplays muted; no autoplay under reduced motion or Save-Data (poster + button only). */
+  (function () {
+    var v = document.getElementById("hvv"), b = document.getElementById("hvs"), M = "/media/tag-launch/v1/";
+    if (!v) return;
+    var quiet = (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) || (navigator.connection && navigator.connection.saveData);
+    function go() {
+      if (quiet) return;
+      var p = v.play();
+      if (p && p.catch) p.catch(function () {
+        if (document.visibilityState !== "visible") document.addEventListener("visibilitychange", function f() {
+          if (document.visibilityState === "visible") { document.removeEventListener("visibilitychange", f); go(); }
+        });
+      });
+    }
+    v.addEventListener("playing", function () { v.classList.add("on"); });
+    function mp4() { v.src = M + "launch-720p.mp4"; go(); }
+    if (v.canPlayType("application/vnd.apple.mpegurl")) { v.src = M + "master.m3u8"; go(); }
+    else {
+      var s = document.createElement("script");
+      s.src = "https://cdn.jsdelivr.net/npm/hls.js@1/dist/hls.light.min.js"; s.async = true;
+      s.onload = function () {
+        if (!(window.Hls && Hls.isSupported())) return mp4();
+        var h = new Hls({ capLevelToPlayerSize: true, startLevel: -1, maxBufferLength: 15 });
+        h.on(Hls.Events.MANIFEST_PARSED, go);
+        h.on(Hls.Events.ERROR, function (e, d) { if (d.fatal) { h.destroy(); mp4(); } });
+        h.loadSource(M + "master.m3u8"); h.attachMedia(v);
+      };
+      s.onerror = mp4; document.head.appendChild(s);
+    }
+    b.addEventListener("click", function () {
+      v.muted = false; v.controls = true; b.hidden = true;
+      try { v.currentTime = 0; } catch (e) {}
+      var p = v.play(); if (p && p.catch) p.catch(function () {});
+    });
+  })();
+</script>
 <script>
   /* Single source of truth for the beta CTA. Change this one line to repoint every
      "Ask for a tag" button on the page. When the iPhone app is approved, swap this

@@ -13,3 +13,20 @@
 
 /apple-touch-icon.png
   Cache-Control: public, max-age=86400
+
+/media/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+/media/tag-launch/v1/master.m3u8
+  Content-Type: application/vnd.apple.mpegurl
+/media/tag-launch/v1/1080p/index.m3u8
+  Content-Type: application/vnd.apple.mpegurl
+/media/tag-launch/v1/720p/index.m3u8
+  Content-Type: application/vnd.apple.mpegurl
+/media/tag-launch/v1/480p/index.m3u8
+  Content-Type: application/vnd.apple.mpegurl
+/media/tag-launch/v1/*.ts
+  Content-Type: video/mp2t
+/media/tag-launch/v1/captions.en.vtt
+  Content-Type: text/vtt; charset=utf-8
